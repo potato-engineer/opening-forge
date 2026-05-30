@@ -23,18 +23,37 @@ def load_openings():
         return []
 
     with open(file_path, "r", encoding="utf-8") as f:
+        next(f)  # skip header row
+
         for line in f:
             line = line.strip()
+
             if not line:
                 continue
 
-            eco, name, moves = line.split("|")
+            parts = line.split("\t")
+
+            if len(parts) != 3:
+                print("BAD LINE:")
+                print(repr(line))
+                print("PARTS:", len(parts))
+                continue
+
+            eco, name, pgn = parts
+
+            moves = []
+
+            for token in pgn.split():
+                if token.endswith("."):
+                    continue
+
+                moves.append(token)
 
             openings.append({
                 "eco": eco,
                 "name": name,
-                "moves": moves.split()
-            })
+                "moves": moves
+        })
 
     return openings
 
@@ -58,23 +77,23 @@ def detect_opening(history, index):
         return None
 
     candidates = index.get(history[0], [])
+
     best_match = None
-    best_score = 0
 
     for opening in candidates:
         moves = opening["moves"]
 
-        match_len = 0
+        # Opening moves must be completely contained
+        # in the played history
+        if len(moves) > len(history):
+            continue
 
-        for i in range(min(len(history), len(moves))):
-            if history[i] == moves[i]:
-                match_len += 1
-            else:
-                break
-
-        if match_len > best_score:
-            best_score = match_len
-            best_match = opening
+        if history[:len(moves)] == moves:
+            if (
+                best_match is None
+                or len(moves) > len(best_match["moves"])
+            ):
+                best_match = opening
 
     return best_match
 
