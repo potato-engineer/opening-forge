@@ -16,7 +16,7 @@ def load_openings():
         "eco.tsv"
     )
 
-    print("DEBUG FILE PATH:", file_path)
+    # print("DEBUG FILE PATH:", file_path)
 
     if not os.path.exists(file_path):
         print("❌ FILE NOT FOUND")
