@@ -1,7 +1,6 @@
 venv/
 
 data/lichess_db_eval.jsonl.zst
-
 engine/*.exe
 
 __pycache__/
