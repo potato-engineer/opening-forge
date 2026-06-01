@@ -1,0 +1,11 @@
+venv/
+
+data/lichess_db_eval.jsonl.zst
+
+engine/*.exe
+
+__pycache__/
+*.pyc
+
+data/archive/
+data/raw_backup/

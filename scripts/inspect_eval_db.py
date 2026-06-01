@@ -1,41 +1,26 @@
-import zstandard as zstd
 import json
+import zstandard as zstd
 
-FILE = "data/lichess_db_eval.jsonl.zst"
+file_path = "data/lichess_db_eval.jsonl.zst"
 
-def stream_lines(file_path):
-    with open(file_path, "rb") as f:
-        dctx = zstd.ZstdDecompressor()
-        with dctx.stream_reader(f) as reader:
-            buffer = ""
-            while True:
-                chunk = reader.read(16384)
-                if not chunk:
-                    break
+with open(file_path, "rb") as f:
+    dctx = zstd.ZstdDecompressor()
 
-                buffer += chunk.decode("utf-8", errors="ignore")
-                lines = buffer.split("\n")
+    with dctx.stream_reader(f) as reader:
+        text = reader.read(500000).decode("utf-8")
 
-                for line in lines[:-1]:
-                    yield line
+lines = text.splitlines()
 
-                buffer = lines[-1]
+print("Lines found:", len(lines))
 
-def main():
-    count = 0
+for i in range(5):
+    entry = json.loads(lines[i])
 
-    for line in stream_lines(FILE):
-        try:
-            obj = json.loads(line)
-            print("\n--- ENTRY ---")
-            print(obj)
+    print("\nENTRY", i + 1)
+    print("FEN:", entry["fen"])
 
-            count += 1
-            if count == 3:
-                break
+    first_eval = entry["evals"][0]
+    first_pv = first_eval["pvs"][0]
 
-        except Exception:
-            continue
-
-if __name__ == "__main__":
-    main()
+    print("Keys:", first_pv.keys())
+    print("PV:", first_pv)
