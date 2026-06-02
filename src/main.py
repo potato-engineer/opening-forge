@@ -57,6 +57,22 @@ def load_openings():
 
     return openings
 
+def load_evaluations():
+    file_path = os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        "data",
+        "opening_evals.json"
+    )
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    eval_map = {}
+
+    for entry in data:
+        eval_map[entry["name"]] = entry
+
+    return eval_map
 
 def build_index(openings):
     index = {}
@@ -104,6 +120,7 @@ def main():
 
     openings = load_openings()
     index = build_index(openings)
+    evaluations = load_evaluations()
 
     print(f"Loaded {len(openings)} openings")
 
@@ -130,6 +147,14 @@ def main():
     print("\nOpening Name:")
     if opening:
         print(opening["name"], f"({opening['eco']})")
+
+        eval_data = evaluations.get(opening["name"])
+
+        if eval_data:
+            print(f"Evaluation: {eval_data['evaluation'] / 100:.2f}")
+            print(f"Best Move: {eval_data['best_move']}")
+            print("PV:", " ".join(eval_data["pv"]))
+
     else:
         print("Unknown Opening")
 
