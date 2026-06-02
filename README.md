@@ -89,7 +89,7 @@ For the complete roadmap, see **ROADMAP.md**.
 
 ### Engine Evaluation Database
 
-![Evaluation Database](assets/evaluation-database.png)
+![Evaluation Database](assets/eval-database.png)
 
 Engine-generated evaluation dataset containing evaluations, best moves, and principal variations for thousands of opening positions.
 
@@ -97,7 +97,7 @@ Engine-generated evaluation dataset containing evaluations, best moves, and prin
 
 ### Position Intelligence Dataset
 
-![Position Database](assets/position-database.png)
+![Position Database](assets/fen-database.png)
 
 FEN-indexed opening position database that enables future position recognition and transposition detection.
 
@@ -105,9 +105,17 @@ FEN-indexed opening position database that enables future position recognition a
 
 ### Codebase Overview
 
-![Codebase Overview](assets/codebase-overview.png)
+![Codebase Overview](assets/project-workspace.png)
 
 Opening Forge workspace showing project organization, datasets, engine integration, scripts, and supporting documentation.
+
+---
+
+### Repository Structure
+
+![Repository Structure](assets/repo-structure.png)
+
+Project organization showing data pipelines, engine integration, scripts, source code, and documentation.
 
 ---
 
