@@ -1,41 +1,95 @@
 # ♟️ Opening Forge
 
-A data-driven chess opening analysis platform built on top of the complete Lichess ECO database.
+### Open-Source Chess Opening Intelligence Platform
 
-Opening Forge helps players identify openings, explore variations, analyze positions, and discover openings that fit their style. The long-term vision is to combine opening theory, engine evaluations, and real-game statistics into a single open-source platform for chess players.
+Opening Forge is an open-source platform for analyzing, understanding, and discovering chess openings.
+
+Most opening tools answer:
+
+> **"What opening is this?"**
+
+Opening Forge aims to answer:
+
+> **"Why do I play this opening?"**  
+> **"Which openings fit my style?"**  
+> **"How has my repertoire evolved?"**  
+> **"Which players think like me?"**  
+> **"What should I learn next?"**
+
+Built on top of the complete Lichess ECO database, Opening Forge combines opening theory, engine analysis, player profiling, and data science into a single platform for chess players.
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-### Current Features
+## Current Features
 
 - Detect chess openings from user-entered moves
-- Support for the complete Lichess ECO database
+- Complete Lichess ECO database integration
 - Recognition of **3700+ openings and variations**
-- Fast indexed lookup for opening identification
 - SAN move validation using `python-chess`
 - Deepest fully-reached opening detection
-- Command-line interface for testing and exploration
+- Fast indexed opening lookup
+- Command-line opening explorer
+- Robust move sequence matching
 
-### Planned Features
+## Planned Features
 
-- Engine evaluation for every opening
-- Opening popularity and win-rate statistics
+### Opening Intelligence
+
+- Engine evaluations for every opening
+- Position-to-opening recognition
+- FEN-based position indexing
+- Opening transposition detection
+- Position explorer
+
+### Opening Analytics
+
+- Popularity metrics
+- Win-rate analysis
+- Complexity scoring
+- Tacticality scoring
+- Aggression scoring
+- Risk profile analysis
+- Theory burden metrics
+
+### Player DNA
+
+- Playstyle profiling
+- Chess personality system
+- Opening evolution timeline
+- Repertoire drift detection
+- Professional player similarity matching
+
+### Repertoire Forge
+
+- Personalized opening recommendations
+- Automated repertoire generation
+- Repertoire gap analysis
+- Study plan generation
+- Weakness detection
+
+### Opening Universe
+
+- Pokémon-inspired opening cards
+- Opening rarity system
+- Achievement tracking
+- Opening mastery progression
+- Shareable opening profiles
+
+### Interactive Platform
+
 - Opening explorer dashboard
-- Opening recommendation system based on playstyle
-- Position-to-opening recognition using FEN hashing
-- PGN import and analysis
-- Opening comparison tools
+- PGN analysis
+- Visual opening graphs
+- Repertoire management
 - Interactive web application
-- Pokémon-style opening cards
-- Personalized opening repertoire builder
 
 ---
 
-## 🚀 Example
+# 🚀 Example
 
-### Input
+## Input
 
 ```text
 e4
@@ -45,7 +99,7 @@ Nc6
 Bc4
 ```
 
-### Output
+## Output
 
 ```text
 Opening Name:
@@ -54,242 +108,271 @@ Italian Game (C50)
 
 ---
 
-## 🏗️ Project Structure
-
-```text
-opening-forge/
-│
-├── data/
-│   └── eco.tsv
-│
-├── src/
-│   └── main.py
-│
-├── README.md
-└── requirements.txt
-```
-
----
-
-## 📚 Data Source
-
-Opening Forge currently uses the Lichess ECO opening database.
-
-The database contains:
-
-- ECO codes
-- Opening names
-- Official move sequences
-- Thousands of opening variations
-
-Current database size:
-
-```text
-3704 openings
-```
-
----
-
-## ⚙️ How It Works
-
-### Opening Parsing
-
-Each opening is loaded from the ECO database and converted into a structured move list.
-
-Example:
-
-```text
-C50 | Italian Game | 1. e4 e5 2. Nf3 Nc6 3. Bc4
-```
-
-becomes
-
-```python
-{
-    "eco": "C50",
-    "name": "Italian Game",
-    "moves": ["e4", "e5", "Nf3", "Nc6", "Bc4"]
-}
-```
-
-### Indexed Lookup
-
-To avoid searching through thousands of openings repeatedly, openings are indexed by their first move.
-
-Example:
-
-```python
-{
-    "e4": [...],
-    "d4": [...],
-    "c4": [...],
-    "Nf3": [...]
-}
-```
-
-This significantly reduces the search space during opening detection.
-
-### Opening Detection
-
-Opening Forge identifies the deepest opening that has been fully reached.
-
-Example:
-
-| Moves Played | Result |
-|-------------|---------|
-| e4 d5 | Scandinavian Defense |
-| e4 d5 exd5 | Scandinavian Defense |
-| e4 d5 exd5 Nf6 | Scandinavian Defense: Modern Variation |
-
-This approach mirrors how modern opening explorers behave.
-
----
-
-## 🛠️ Installation
-
-### Clone the repository
-
-```bash
-git clone https://github.com/AyushSinha2603/opening-forge.git
-cd opening-forge
-```
-
-### Create a virtual environment
-
-```bash
-python -m venv venv
-```
-
-### Activate the environment
-
-#### Windows
-
-```bash
-venv\Scripts\activate
-```
-
-#### Linux/macOS
-
-```bash
-source venv/bin/activate
-```
-
-### Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## ▶️ Running the Project
-
-```bash
-python src/main.py
-```
-
-Example session:
-
-```text
-Enter move (or 'exit'): e4
-Enter move (or 'exit'): e5
-Enter move (or 'exit'): Nf3
-Enter move (or 'exit'): Nc6
-Enter move (or 'exit'): Bc4
-Enter move (or 'exit'): exit
-
-Opening Name:
-Italian Game (C50)
-```
-
----
-
-## 🎯 Vision
+# 🎯 Why Opening Forge?
 
 Most opening tools focus on memorization.
 
-Opening Forge aims to help players understand:
+Opening Forge focuses on understanding.
 
-- Which openings fit their playstyle
-- Which openings perform best statistically
-- How engine evaluations compare across openings
-- How popular openings evolve over time
-- Which repertoires suit specific player profiles
+The long-term goal is to help players answer questions such as:
 
-The goal is to build an open-source platform that combines opening theory, engine analysis, and data science into a single experience.
+- Which openings fit my natural style?
+- Which openings score best for players like me?
+- Which positions am I most comfortable in?
+- How has my repertoire changed over time?
+- Which grandmasters have similar opening preferences?
+- What should I learn next?
+
+Rather than being an opening encyclopedia, Opening Forge aims to become a chess opening intelligence platform.
 
 ---
 
-## 🔮 Roadmap
+# 🗺️ Roadmap
 
-### Phase 1 — Foundation ✅
+## Phase 1 — Opening Recognition ✅
+
+### Completed
 
 - [x] ECO database integration
 - [x] Opening parsing
-- [x] Indexed lookup
-- [x] Opening detection
+- [x] SAN move validation
+- [x] Fast indexed lookup
+- [x] Deepest opening detection
+- [x] Support for 3700+ openings
 
-### Phase 2 — Evaluation Engine
+---
 
-- [ ] Import Lichess evaluation database
-- [ ] Generate FEN positions for all openings
-- [ ] Attach engine evaluations to openings
-- [ ] Build opening evaluation dataset
+## Phase 2 — Position Intelligence 🚧
 
-### Phase 3 — Analytics
+### In Progress
 
-- [ ] Popularity metrics
-- [ ] Win-rate analysis
-- [ ] Complexity scoring
-- [ ] Aggression and risk metrics
+- [x] Position generation framework
+- [ ] Engine evaluation integration
+- [ ] FEN indexing
+- [ ] Position explorer
+- [ ] Transposition detection
+- [ ] Opening-to-position mapping
 
-### Phase 4 — Recommendation System
+---
 
-- [ ] Playstyle profiling
-- [ ] Personalized opening suggestions
+## Phase 3 — Opening Analytics
+
+### Opening Profiles
+
+- [ ] Popularity score
+- [ ] Win-rate score
+- [ ] Complexity score
+- [ ] Tacticality score
+- [ ] Aggression score
+- [ ] Theory burden score
+- [ ] Risk profile score
+
+Example:
+
+```text
+Sicilian Dragon
+
+Aggression: 94
+Complexity: 97
+Risk: 88
+Theory: 92
+Positional: 41
+```
+
+---
+
+## Phase 4 — Player DNA
+
+### Chess Personality System
+
+- [ ] Opening DNA generation
+- [ ] Chess personality classification
+- [ ] Style clustering
+- [ ] Repertoire evolution tracking
+- [ ] Repertoire drift detection
+
+Example:
+
+```text
+Player DNA
+
+Aggression: 82
+Complexity: 89
+Risk Appetite: 75
+Theory Dependence: 71
+```
+
+Possible personality types:
+
+- The Hunter
+- The Architect
+- The Scientist
+- The Gambler
+- The Technician
+
+---
+
+## Phase 5 — Repertoire Forge
+
+### Personalized Recommendations
+
+- [ ] Opening recommendation engine
 - [ ] Repertoire generation
+- [ ] Weakness detection
+- [ ] Study plan generation
+- [ ] Repertoire gap analysis
 
-### Phase 5 — Interactive Platform
+Example:
 
-- [ ] Dashboard
-- [ ] Opening explorer
-- [ ] Visual opening cards
-- [ ] PGN analysis tools
+```text
+Recommended Repertoire
 
----
+White:
+Vienna Gambit
 
-## 🤝 Contributing
+Black vs e4:
+Sicilian Dragon
 
-Contributions are welcome.
-
-Whether you're interested in:
-
-- Chess theory
-- Python development
-- Data engineering
-- Analytics
-- Machine learning
-- Frontend development
-- UI/UX design
-
-feel free to open an issue, start a discussion, or submit a pull request.
+Black vs d4:
+King's Indian Defense
+```
 
 ---
 
-## 📄 License
+## Phase 6 — Opening Universe
+
+### Gamification Layer
+
+- [ ] Opening cards
+- [ ] Opening collection system
+- [ ] Achievement system
+- [ ] Opening mastery levels
+- [ ] Shareable opening profiles
+
+Example:
+
+```text
+Sicilian Dragon
+
+Class:
+Berserker
+
+Attack:
+94
+
+Defense:
+42
+
+Complexity:
+97
+```
+
+---
+
+## Phase 7 — Research Features
+
+### Advanced Analysis
+
+- [ ] Opening similarity engine
+- [ ] Opening embeddings
+- [ ] Opening relationship graph
+- [ ] Transposition predictor
+- [ ] Position clustering
+- [ ] AI-driven recommendations
+
+Example:
+
+```text
+You play London System.
+
+Most Similar Openings:
+
+89% Torre Attack
+84% Colle System
+81% Catalan Opening
+```
+
+---
+
+## Phase 8 — Opening Wrapped
+
+### Annual Chess Reports
+
+- [ ] Opening Wrapped
+- [ ] Repertoire summary
+- [ ] Best-performing openings
+- [ ] Hidden gems
+- [ ] Shareable reports
+
+Example:
+
+```text
+Opening Wrapped 2026
+
+Most Played:
+Sicilian Dragon
+
+Best Scoring:
+Vienna Gambit
+
+Hidden Gem:
+Scotch Gambit
+
+Opening Personality:
+The Hunter
+```
+
+---
+
+# 🏗️ Long-Term Vision
+
+Opening Forge is not intended to be another opening explorer.
+
+The goal is to become a complete **Chess Opening Intelligence Platform** that maps:
+
+- Openings
+- Positions
+- Engine evaluations
+- Player styles
+- Repertoires
+- Historical trends
+
+into a single interconnected system.
+
+The project aims to help players discover not only **what they play**, but **why they play it**.
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome from:
+
+- Chess players
+- Python developers
+- Data engineers
+- Machine learning enthusiasts
+- Frontend developers
+- UI/UX designers
+- Data scientists
+
+If you're interested in chess, analytics, or open-source development, feel free to open an issue, start a discussion, or submit a pull request.
+
+---
+
+# 📄 License
 
 This project is currently under active development.
 
-A formal open-source license will be added soon.
+An open-source license will be added before the first major release.
 
 ---
 
-## ⭐ Support
+# ⭐ Support
 
-If you find the project interesting, consider starring the repository.
+If you find Opening Forge interesting, consider starring the repository.
 
-Feedback, ideas, feature requests, and contributions are always appreciated.
+Feature ideas, bug reports, discussions, and contributions are always appreciated.
 
 ---
 
-> Opening Forge is an attempt to transform raw opening theory into actionable chess insights using data, engines, and analytics.
+> **Opening Forge aims to transform chess openings from a collection of moves into a system of insights, relationships, and player understanding.**
