@@ -3,3 +3,4 @@ pandas>=2.3.0
 numpy>=2.3.0
 zstandard>=0.24.0
 tqdm>=4.67.0
+pytest>=8.0.0
